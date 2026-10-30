@@ -25,6 +25,7 @@ export default function App() {
   const [tidy, setTidy] = useState(false)
   const [chatIdx, setChatIdx] = useState(1)
   const [pipe, setPipe] = useState(0) // 0 idle, 1..4 running/done, 99 stuck
+  const [simStuck, setSimStuck] = useState(false) // slide 5 only: false = normal, true = simulation stuck
   const [loopIdx, setLoopIdx] = useState(0)
   const [turn, setTurn] = useState(1)
   const [agents, setAgents] = useState(0) // 0 idle, 1 running, 2 done
@@ -165,10 +166,21 @@ export default function App() {
               <p className="kicker">Level 2 · Lanjutan</p>
               <h2>Workflow yang <span className="hl">kaku</span> kalau kondisi berubah.</h2>
               <p className="lead">Coba simulasinya: format artikel tidak ada di skrip, langkah 2 langsung macet.</p>
-              {flow(true)}
-              <button className="btn" onClick={() => setPipe(99)}>Simulasi bahan tak terduga</button>{' '}
-              <button className="btn" onClick={() => setPipe(0)}>Kembalikan ke jalur normal</button>
-              <p className="status bad">Workflow yang kaku tidak bisa improvisasi — harus didesain ulang manusia.</p>
+              <div className="flow">
+                {pipeNodes.map((n, i) => (
+                  <span key={n} style={{ display: 'contents' }}>
+                    <div className={`node ${simStuck && i === 1 ? 'stuck' : ''}`}>{n}{simStuck && i === 1 ? ' — macet!' : ''}</div>
+                    {i < 3 && <span className="arrow">→</span>}
+                  </span>
+                ))}
+              </div>
+              <button className="btn" onClick={() => setSimStuck(true)}>Simulasi bahan tak terduga</button>{' '}
+              <button className="btn" onClick={() => setSimStuck(false)}>Kembalikan ke jalur normal</button>
+              <p className={simStuck ? 'status bad' : 'status ok'}>
+                {simStuck
+                  ? 'Workflow yang kaku tidak bisa improvisasi — harus didesain ulang manusia.'
+                  : 'Jalur normal: semua node siap. Tekan “Simulasi bahan tak terduga” untuk melihat langkah 2 macet, lalu “Kembalikan ke jalur normal” untuk meresetnya.'}
+              </p>
               <p className="hand">Analogi: resep masak. Konsisten, tapi kalau bahan pengganti tidak ada di resep, kokinya bingung.</p>
             </>
           )}
