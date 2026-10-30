@@ -1,0 +1,1 @@
+{"dependencies":{"gsap":"^3.12.5","lenis":"^1.1.18","react":"^18.3.1","react-dom":"^18.3.1"},"devDependencies":{"@vitejs/plugin-react":"^4.3.1","vite":"^5.4.8"},"name":"mengenal-agentic-ai","private":true,"scripts":{"build":"vite build","dev":"vite","preview":"vite preview --port 4173 --strictPort"},"type":"module","version":"1.0.0"}
