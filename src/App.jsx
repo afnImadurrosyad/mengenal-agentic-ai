@@ -6,6 +6,7 @@ const SLIDES = [
   'Contoh Workflow Konten', 'Apa Itu AI Agent?', 'Level 3 · AI Agent', 'Agent: Reason + Act', 'ReAct + Iterasi',
   'Ringkasan 3 Level', 'Apa Itu Agentic Workflow?', 'Level 4 · Agentic Workflow', 'Demo Agentic Workflow',
   'Perbandingan', 'Panduan memilih', 'Risiko', 'Penutup',
+  'Bab Baru: Muse.ai', 'Apa itu Muse.ai?', 'Muse: Agent + Workflow', 'Cara daftar Muse.ai', 'Contoh simpel: pakai Muse.ai', 'Mulai dengan aman',
 ]
 
 const n8nNodes = [
@@ -32,6 +33,8 @@ export default function App() {
   const [agents, setAgents] = useState(0) // 0 idle, 1 running, 2 done
   const [sent, setSent] = useState(false)
   const [choice, setChoice] = useState(null)
+  const [museStep, setMuseStep] = useState(0) // 0 idle, 1 pahami, 2 kerjakan, 3 hasil
+  const museTimers = useRef([])
   const calTimers = useRef([])
   const contentTimers = useRef([])
 
@@ -59,6 +62,7 @@ export default function App() {
   useEffect(() => () => {
     calTimers.current.forEach(clearTimeout)
     contentTimers.current.forEach(clearTimeout)
+    museTimers.current.forEach(clearTimeout)
   }, [])
 
   const runCalendar = () => {
@@ -83,6 +87,16 @@ export default function App() {
       setContentStep(n)
       if (n === 5) setContentRunning(false)
     }, 800 * (i + 1)))
+  }
+  const runMuseDemo = () => {
+    museTimers.current.forEach(clearTimeout)
+    setMuseStep(1)
+    museTimers.current = [2, 3].map((n, i) => setTimeout(() => setMuseStep(n), 900 * (i + 1)))
+  }
+  const resetMuseDemo = () => {
+    museTimers.current.forEach(clearTimeout)
+    museTimers.current = []
+    setMuseStep(0)
   }
   const resetContent = () => {
     contentTimers.current.forEach(clearTimeout)
@@ -524,6 +538,89 @@ export default function App() {
               <footer>
                 <p>Terinspirasi dari video Jeff Su, “AI Agents, Clearly Explained”: <a href="https://www.youtube.com/watch?v=FwOTs4UxQS4">youtube.com/watch?v=FwOTs4UxQS4</a></p>
               </footer>
+            </>
+          )}
+
+          {idx === 27 && (
+            <div className="q-slide">
+              <p className="kicker">Bab baru</p>
+              <h2>Berkenalan dengan Muse.ai</h2>
+              <p className="small" style={{ fontSize: 18 }}>AI agent pribadi dari Meta — bukan sekadar chatbot.</p>
+            </div>
+          )}
+
+          {idx === 28 && (
+            <>
+              <p className="kicker">Bab baru · Apa itu Muse.ai?</p>
+              <h2>Muse.ai itu <span className="hl">asisten pribadimu, yang bekerja.</span></h2>
+              <ul className="points">
+                <li><strong>Chatbot menjawab.</strong> Muse bertindak: ia mengerjakan tugas untukmu, bukan hanya membalas chat.</li>
+                <li><strong>Punya komputer sendiri</strong> di cloud yang tetap bersamamu antar percakapan — ia ingat konteks dan bisa melanjutkan pekerjaan.</li>
+                <li><strong>Bisa memakai tools & aplikasi</strong> yang kamu hubungkan: email, kalender, browser, dokumen.</li>
+                <li><strong>Minta persetujuan dulu</strong> sebelum langkah penting: mengirim, membayar, atau mempublikasikan.</li>
+              </ul>
+            </>
+          )}
+
+          {idx === 29 && (
+            <>
+              <p className="kicker">Bab baru · Kenapa nyambung dengan bab tadi?</p>
+              <h2>Muse itu <span className="hl">agent — yang menjalankan workflow.</span></h2>
+              <div className="step-list">
+                <div className="step"><strong>Perintahmu</strong><span>“Buatkan ringkasan materi ini.”</span></div>
+                <div className="step"><strong>Agent bernalar</strong><span>Ia memutuskan langkah & tools yang dipakai.</span></div>
+                <div className="step"><strong>Workflow berjalan</strong><span>Baca materi → susun poin → format hasil.</span></div>
+                <div className="step on"><strong>Checkpoint</strong><span>Kamu periksa & setujui sebelum hasil dipakai.</span></div>
+              </div>
+              <p className="status ok">Jadi: LLM di bab 1–2, agent di bab 3, dan Muse adalah contoh agent yang bisa kamu pakai langsung.</p>
+            </>
+          )}
+
+          {idx === 30 && (
+            <>
+              <p className="kicker">Bab baru · Cara daftar</p>
+              <h2>Daftar Muse.ai, <span className="hl">dalam 4 langkah.</span></h2>
+              <div className="step-list">
+                <div className="step"><strong>1.</strong><span>Buka <strong>muse.ai</strong> di browser, atau unduh aplikasi “Muse dari Meta” di App Store / Google Play.</span></div>
+                <div className="step"><strong>2.</strong><span>Masuk dengan akun Meta — nomor HP atau email, lalu masukkan kode verifikasi yang dikirim.</span></div>
+                <div className="step"><strong>3.</strong><span>Ikuti onboarding: beri nama agent-mu dan atur preferensi dasar.</span></div>
+                <div className="step"><strong>4.</strong><span>Mulai pakai — ada akses gratis dengan batas pemakaian, dan paket berbayar untuk pemakaian lebih.</span></div>
+              </div>
+              <p className="status bad">Catatan jujur untuk audiens di Indonesia: per info resmi, Muse saat ini tersedia di AS, Kanada, Jepang, dan Singapura — belum diumumkan untuk Indonesia. Kalau saat dibuka muncul “belum tersedia di lokasimu”, itu alasannya, bukan salah langkah daftar.</p>
+            </>
+          )}
+
+          {idx === 31 && (
+            <>
+              <p className="kicker">Bab baru · Contoh simpel</p>
+              <h2>Satu perintah, <span className="hl">satu hasil jadi.</span></h2>
+              <div className="thought">“Buatkan ringkasan 1 halaman tentang fotosintesis + jadwal belajar 3 hari.”</div>
+              <div className="step-list">
+                <div className={`step ${museStep === 1 ? 'on' : museStep > 1 ? 'done' : ''}`}><strong>1.</strong><span>Muse memahami perintah & memecahnya jadi tugas.</span></div>
+                <div className={`step ${museStep === 2 ? 'on' : museStep > 2 ? 'done' : ''}`}><strong>2.</strong><span>Muse menyusun ringkasan & jadwalnya.</span></div>
+                <div className={`step ${museStep === 3 ? 'on' : ''}`}><strong>3.</strong><span>Hasil jadi dokumen yang bisa kamu baca, edit, dan simpan.</span></div>
+              </div>
+              {museStep === 3 && (
+                <div className="card" style={{ marginTop: 10 }}>
+                  <h3>Contoh hasil (ilustrasi)</h3>
+                  <p>Fotosintesis: tumbuhan mengubah cahaya + air + CO₂ jadi glukosa & oksigen. Jadwal: Hari 1 konsep, Hari 2 latihan soal, Hari 3 review & kuis mandiri.</p>
+                </div>
+              )}
+              <button className="btn" onClick={runMuseDemo} disabled={museStep === 3} style={{ marginTop: 10 }}>Kirim perintah →</button>{' '}
+              <button className="btn" onClick={resetMuseDemo}>Ulangi demo</button>
+            </>
+          )}
+
+          {idx === 32 && (
+            <>
+              <p className="kicker">Bab baru · Penutup bab</p>
+              <h2>Mulai dari yang kecil, <span className="hl">dan aman.</span></h2>
+              <ul className="points">
+                <li>Mulai dari 1 tugas kecil yang risikonya rendah — misal ringkasan, bukan pembayaran.</li>
+                <li>Biarkan Muse membaca dulu sebelum bertindak; periksa hasilnya sebelum disetujui.</li>
+                <li>Biarkan persetujuan tetap aktif untuk apa pun yang mengirim, membayar, atau mempublikasikan.</li>
+                <li>Tambah aplikasi & akses sedikit demi sedikit, seiring kamu percaya pada cara kerjanya.</li>
+              </ul>
             </>
           )}
         </div>
