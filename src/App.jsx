@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const SLIDES = [
-  'Judul', 'Apa Itu LLM?', 'Apa itu LLM', 'Diagram LLM', 'Batasan LLM',
+  'Judul', 'Tren AI', 'Kenapa sekarang?', 'Peran manusia berubah', 'Apa Itu LLM?', 'Apa itu LLM', 'Diagram LLM', 'Batasan LLM',
   'Apa Itu AI Workflow?', 'Level 2 · AI Workflow', 'Diagram Workflow Kalender', 'Batasan Workflow', 'RAG',
   'Contoh Workflow Konten', 'Apa Itu AI Agent?', 'Level 3 · AI Agent', 'Agent: Reason + Act', 'ReAct + Iterasi',
   'Ringkasan 3 Level', 'Apa Itu Agentic Workflow?', 'Level 4 · Agentic Workflow', 'Demo Agentic Workflow',
@@ -148,13 +148,53 @@ export default function App() {
           )}
 
           {idx === 1 && (
+            <>
+              <p className="kicker">Tren AI · Dari dulu sampai sekarang</p>
+              <h2>AI tidak tiba-tiba jadi agen.</h2>
+              <div className="step-list">
+                <div className="step"><strong>AI klasik</strong><span>Aturan & model untuk satu tugas; manusia yang menjalankan.</span></div>
+                <div className="step"><strong>Era LLM</strong><span>Model bahasa besar: menulis & menjawab, tapi masih pasif menunggu perintah.</span></div>
+                <div className="step"><strong>Era Workflow</strong><span>LLM dihubungkan ke data & tools lewat jalur yang ditentukan manusia.</span></div>
+                <div className="step"><strong>Era Agent</strong><span>LLM memutuskan sendiri cara mencapai tujuan, memakai tools, mengulang sampai beres.</span></div>
+                <div className="step on"><strong>Era Agentic</strong><span>Banyak agent bekerja bersama; manusia di checkpoint persetujuan.</span></div>
+              </div>
+            </>
+          )}
+
+          {idx === 2 && (
+            <>
+              <p className="kicker">Tren AI · Kenapa sekarang?</p>
+              <h2>Tiga hal yang berubah bersamaan.</h2>
+              <ul className="points">
+                <li>Model makin mampu bernalar & memakai tools, bukan cuma menebak kata berikutnya.</li>
+                <li>Aplikasi & data makin mudah dihubungkan lewat API.</li>
+                <li>Pekerjaan butuh eksekusi, bukan cuma jawaban — chatbot saja tidak cukup.</li>
+              </ul>
+            </>
+          )}
+
+          {idx === 3 && (
+            <>
+              <p className="kicker">Tren AI · Yang berubah: peran manusia</p>
+              <h2>Dari mengerjakan, ke mengarahkan.</h2>
+              <ul className="points">
+                <li>Dulu: manusia mengerjakan semua langkah.</li>
+                <li>Lalu: AI menjawab saat ditanya.</li>
+                <li>Lalu: AI menjalankan jalur yang kita tentukan.</li>
+                <li>Sekarang: AI mengerjakan tugas, manusia memeriksa & menyetujui.</li>
+                <li>Peta belajar kita: LLM → AI Workflow → AI Agent → Agentic Workflow.</li>
+              </ul>
+            </>
+          )}
+
+          {idx === 4 && (
             <div className="q-slide">
               <p className="kicker">Topik berikutnya</p>
               <h2>Apa Itu LLM?</h2>
             </div>
           )}
 
-          {idx === 2 && (
+          {idx === 5 && (
             <>
               <p className="kicker">Level 1 · Apa itu LLM?</p>
               <h2>LLM adalah <span className="hl">fondasi</span> chatbot.</h2>
@@ -166,7 +206,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 3 && (
+          {idx === 6 && (
             <>
               <p className="kicker">Level 1 · Diagram LLM</p>
               <h2>Input → LLM → Output.</h2>
@@ -182,7 +222,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 4 && (
+          {idx === 7 && (
             <>
               <p className="kicker">Level 1 · Batasan LLM</p>
               <h2>Dua batas yang <span className="hl">penting.</span></h2>
@@ -194,14 +234,14 @@ export default function App() {
             </>
           )}
 
-          {idx === 5 && (
+          {idx === 8 && (
             <div className="q-slide">
               <p className="kicker">Topik berikutnya</p>
               <h2>Apa Itu AI Workflow?</h2>
             </div>
           )}
 
-          {idx === 6 && (
+          {idx === 9 && (
             <>
               <p className="kicker">Level 2 · AI Workflow</p>
               <h2>LLM + <span className="hl">jalur yang sudah ditentukan.</span></h2>
@@ -213,7 +253,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 7 && (
+          {idx === 10 && (
             <>
               <p className="kicker">Level 2 · Diagram Workflow Kalender</p>
               <h2>LLM yang bisa <span className="hl">bertanya ke kalender.</span></h2>
@@ -242,7 +282,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 8 && (
+          {idx === 11 && (
             <>
               <p className="kicker">Level 2 · Batasan Workflow</p>
               <h2>Jalur sama, <span className="hl">pertanyaan berbeda.</span></h2>
@@ -266,7 +306,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 9 && (
+          {idx === 12 && (
             <>
               <p className="kicker">Level 2 · RAG</p>
               <h2>RAG: <span className="hl">mencari dulu, baru menjawab.</span></h2>
@@ -278,7 +318,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 10 && (
+          {idx === 13 && (
             <>
               <p className="kicker">Level 2 · Contoh nyata: Workflow Konten</p>
               <h2>Konten harian, <span className="hl">tanpa menulis dari nol.</span></h2>
@@ -332,14 +372,14 @@ export default function App() {
             </>
           )}
 
-          {idx === 11 && (
+          {idx === 14 && (
             <div className="q-slide">
               <p className="kicker">Topik berikutnya</p>
               <h2>Apa Itu AI Agent?</h2>
             </div>
           )}
 
-          {idx === 12 && (
+          {idx === 15 && (
             <>
               <p className="kicker">Level 3 · AI Agent</p>
               <h2>Perubahan besar: <span className="hl">pengambil keputusan diganti.</span></h2>
@@ -351,7 +391,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 13 && (
+          {idx === 16 && (
             <>
               <p className="kicker">Level 3 · Agent: Reason + Act</p>
               <h2>Agent <span className="hl">berpikir</span> sebelum bertindak.</h2>
@@ -360,7 +400,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 14 && (
+          {idx === 17 && (
             <>
               <p className="kicker">Level 3 · ReAct + Iterasi</p>
               <h2>ReAct = Reason + Act, <span className="hl">diulang mandiri.</span></h2>
@@ -379,7 +419,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 15 && (
+          {idx === 18 && (
             <>
               <p className="kicker">Ringkasan · 3 Level</p>
               <h2>Tiga level, <span className="hl">satu garis besar.</span></h2>
@@ -391,14 +431,14 @@ export default function App() {
             </>
           )}
 
-          {idx === 16 && (
+          {idx === 19 && (
             <div className="q-slide">
               <p className="kicker">Topik berikutnya</p>
               <h2>Apa Itu Agentic Workflow?</h2>
             </div>
           )}
 
-          {idx === 17 && (
+          {idx === 20 && (
             <>
               <p className="kicker">Level 4 · Lanjutan dari video</p>
               <h2>Agentic Workflow: agent yang <span className="hl">diorkestrasi.</span></h2>
@@ -412,7 +452,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 18 && (
+          {idx === 21 && (
             <>
               <p className="kicker">Level 4 · Demo Agentic Workflow</p>
               <h2>Digest tugas, <span className="hl">dengan gerbang approve.</span></h2>
@@ -432,7 +472,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 19 && (
+          {idx === 22 && (
             <>
               <p className="kicker">Perbandingan</p>
               <h2>Siapa yang memutuskan <span className="hl">langkah berikutnya?</span></h2>
@@ -456,7 +496,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 20 && (
+          {idx === 23 && (
             <>
               <p className="kicker">Panduan memilih</p>
               <h2>Jangan asal pakai agent. <span className="hl">Tanya dulu tugasnya.</span></h2>
@@ -472,7 +512,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 21 && (
+          {idx === 24 && (
             <>
               <p className="kicker">Risiko &amp; tanggung jawab</p>
               <h2>Agent boleh cepat. <span className="hl">Verifikasi tetap milikmu.</span></h2>
@@ -484,7 +524,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 22 && (
+          {idx === 25 && (
             <>
               <p className="kicker">Penutup</p>
               <h2>AI tidak menggantikan kerja. <span className="hl">AI mengubah peranmu.</span></h2>
