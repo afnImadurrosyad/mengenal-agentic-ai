@@ -176,3 +176,16 @@ footer{border-top:2px solid var(--ink);margin-top:18px;padding-top:14px;color:va
 .trend-img{width:100%;max-height:58vh;object-fit:contain;background:#fff;border:2px solid #111;border-radius:12px;padding:8px;box-sizing:border-box}
 .video-frame{width:100%;max-width:860px;aspect-ratio:16/9;border:2px solid #111;border-radius:12px;background:#000}
 .email-photo{display:block;width:100%;max-width:520px;max-height:46vh;object-fit:contain;margin:10px auto 0;border-radius:12px}
+.n8n-node.selected{outline:3px solid var(--blue);outline-offset:1px}
+.n8n-detail-card{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:10px 12px;margin:0 14px 4px;text-align:left}
+.n8n-detail-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;margin-bottom:6px}
+.n8n-close{border:2px solid var(--ink);background:#fff;border-radius:50%;width:26px;height:26px;font-weight:900;cursor:pointer;flex:none}
+.n8n-setting{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:3px 0;border-top:1px dashed #d1d5db}
+.n8n-setting span{color:var(--muted)}
+.n8n-setting strong{text-align:right}
+.n8n-rules{font-size:13px;margin-top:6px;line-height:1.5}
+.n8n-output{background:#fefce8;border:1px dashed #d1d5db;border-radius:8px;padding:8px 10px;font-size:13px;margin-top:6px;line-height:1.5}
+.n8n-sheet{font-size:12px;margin-top:6px}
+.n8n-sheet table{width:100%;border-collapse:collapse;margin-top:4px}
+.n8n-sheet th,.n8n-sheet td{border:1px solid #d1d5db;padding:4px 6px;text-align:left}
+.n8n-sheet th{background:#f3f4f6}
