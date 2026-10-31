@@ -227,6 +227,7 @@ export default function App() {
                 <li>Tidak tahu data pribadimu: kalender, data internal, dokumenmu.</li>
                 <li>Contoh: “Kapan coffee chat-ku?” → gagal, ia tak bisa membuka kalendermu.</li>
               </ul>
+              <img className="email-photo" src={`${import.meta.env.BASE_URL}coffee-chat-fail.png`} alt="Screenshot jawaban LLM saat ditanya kapan coffee chat diadakan" />
             </>
           )}
 
