@@ -151,8 +151,8 @@ export default function App() {
             <>
               <p className="kicker">Video pembuka · 18 detik</p>
               <h2>Tonton dulu: AI, dijelaskan singkat.</h2>
-              <iframe className="video-frame" src="https://www.youtube.com/embed/FwOTs4UxQS4?start=0&end=18&rel=0" title="Jeff Su — AI Agents, Clearly Explained (0:00–0:18)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-              <p className="small">Sumber: Jeff Su, “AI Agents, Clearly Explained” — diputar 0:00–0:18, sampai layar menghitam.</p>
+              <video className="video-frame" controls preload="metadata" src={`${import.meta.env.BASE_URL}video-opening.mp4`} title="Jeff Su — AI Agents, Clearly Explained (0:00–0:18)"></video>
+              <p className="small">Sumber: Jeff Su, “AI Agents, Clearly Explained” — klip pembuka 0:00–0:18, berakhir di layar hitam. Video lokal, bukan embed.</p>
             </>
           )}
 
