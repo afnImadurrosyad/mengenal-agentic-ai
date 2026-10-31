@@ -177,7 +177,7 @@ footer{border-top:2px solid var(--ink);margin-top:18px;padding-top:14px;color:va
 .video-frame{width:100%;max-width:860px;aspect-ratio:16/9;border:2px solid #111;border-radius:12px;background:#000}
 .email-photo{display:block;width:100%;max-width:520px;max-height:46vh;object-fit:contain;margin:10px auto 0;border-radius:12px}
 .n8n-node.selected{outline:3px solid var(--blue);outline-offset:1px}
-.n8n-detail-card{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:10px 12px;margin:0 14px 4px;text-align:left}
+.n8n-detail-card{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:10px 12px;margin:0 14px 4px;text-align:left;max-height:32vh;overflow-y:auto}
 .n8n-detail-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;margin-bottom:6px}
 .n8n-close{border:2px solid var(--ink);background:#fff;border-radius:50%;width:26px;height:26px;font-weight:900;cursor:pointer;flex:none}
 .n8n-setting{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:3px 0;border-top:1px dashed #d1d5db}
