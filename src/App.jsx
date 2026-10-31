@@ -288,15 +288,20 @@ export default function App() {
                   <span className="diag-label">Input: cuaca hari itu?</span><span className="diag-arrow">→</span>
                   <div className="llm-box">LLM</div><span className="diag-arrow">→</span><span className="diag-label">Output: ?</span>
                 </div>
-                <div className="cal-wrap" style={{ position: 'relative' }}>
+                <div className="diag-down">
+                  <span className="search-label">Search Query → hanya ke kalender</span>
+                  <span className="down-arrow">↓</span>
+                </div>
+                <div className="cal-wrap" style={{ marginTop: 6 }}>
                   <div className="cal-tile">
                     <div className="cal-white"><span>31</span></div>
                     <div className="cal-yellow" /><div className="cal-green" /><div className="cal-red" />
+                    {weatherAsked && <span className="big-x" aria-label="Tidak ada data cuaca">✕</span>}
                   </div>
                   <span className="cal-name">Google Calendar</span>
-                  {weatherAsked && <span className="big-x" aria-label="Tidak ada data cuaca">✕</span>}
+                  {weatherAsked && <span style={{ color: '#f87171', fontWeight: 800, fontSize: 13 }}>✕ Tidak ada data cuaca di jalur ini</span>}
                 </div>
-                <p className="diag-status">{weatherAsked ? 'Gagal: jalur ini hanya ke kalender. Kalender tahu tanggal, bukan cuaca.' : 'Tekan tombolnya untuk melihat apa yang terjadi.'}</p>
+                <p className="diag-status" style={{ textAlign: 'center' }}>{weatherAsked ? 'Gagal: jalur ini hanya ke kalender. Kalender tahu tanggal, bukan cuaca.' : 'Tekan tombolnya untuk melihat apa yang terjadi.'}</p>
               </div>
               <button className="btn" onClick={() => setWeatherAsked(true)} disabled={weatherAsked}>Tanya cuaca hari itu</button>{' '}
               <button className="btn" onClick={() => setWeatherAsked(false)}>Ulangi demo</button>
