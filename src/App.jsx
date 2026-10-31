@@ -433,7 +433,6 @@ export default function App() {
             <>
               <p className="kicker">Level 4 · Lanjutan dari video</p>
               <h2>Agentic Workflow: agent yang <span className="hl">diorkestrasi.</span></h2>
-              <p><span className="badge-ext">⚠️ Ini lanjutan kami, bukan bagian dari video Jeff Su</span></p>
               <ul className="points">
                 <li>Tujuan + batasan ditentukan manusia.</li>
                 <li>Banyak agent dan tools diorkestrasi dalam satu alur.</li>
