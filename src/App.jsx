@@ -372,7 +372,7 @@ export default function App() {
               <button className="btn" onClick={resetContent}>Ulangi demo</button>
               <p className={contentStep === 5 ? 'status bad' : 'status ok'}>
                 {contentStep === 5
-                  ? 'Hasil kurang lucu? Manusia yang menulis ulang prompt Claude secara manual.'
+                  ? 'Hasil kurang maksimal? Manusia yang mengambil keputusan: ubah prompt Claude, ganti gaya, atau hentikan workflow.'
                   : 'Tekan Jalankan workflow — node menyala berurutan. Klik node untuk detailnya.'}
               </p>
             </>
