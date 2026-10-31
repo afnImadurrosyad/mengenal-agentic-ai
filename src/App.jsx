@@ -521,7 +521,6 @@ export default function App() {
               <h2>AI tidak menggantikan kerja. <span className="hl">AI mengubah peranmu.</span></h2>
               <ul className="points">
                 <li>Dari eksekutor → pengarah / editor / approver.</li>
-                <li>Tantangan: 1 pekerjaan berulang → workflow dulu → agentic bila stabil.</li>
               </ul>
               <footer>
                 <p>Terinspirasi dari video Jeff Su, “AI Agents, Clearly Explained”: <a href="https://www.youtube.com/watch?v=FwOTs4UxQS4">youtube.com/watch?v=FwOTs4UxQS4</a></p>
