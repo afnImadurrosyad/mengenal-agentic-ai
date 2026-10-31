@@ -173,3 +173,4 @@ footer{border-top:2px solid var(--ink);margin-top:18px;padding-top:14px;color:va
 .q-slide{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:52vh;gap:6px}
 .q-slide h2{font-size:clamp(36px,7vw,72px);line-height:1.05;margin:10px 0}
 .identity{margin-top:26px;font-weight:700;font-size:clamp(14px,1.6vw,17px);color:#3f3a2e}
+.trend-img{width:100%;max-height:58vh;object-fit:contain;background:#fff;border:2px solid #111;border-radius:12px;padding:8px;box-sizing:border-box}
