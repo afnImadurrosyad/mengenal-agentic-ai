@@ -201,7 +201,8 @@ export default function App() {
                 <p className="diag-text">Input: “Buatkan draf email untuk mengajak coffee chat.”</p>
                 {emailShown ? <img className="email-photo" src={`${import.meta.env.BASE_URL}coffee-chat-email.png`} alt="Screenshot draf email coffee chat" /> : <p className="diag-text">Output: — (tekan tombol untuk melihat hasilnya)</p>}
               </div>
-              <button className="btn" onClick={() => setEmailShown(!emailShown)}>{emailShown ? 'Ulangi demo' : 'Ubah input jadi email →'}</button>
+              <button className="btn" onClick={() => setEmailShown(true)} disabled={emailShown}>Jalankan demo</button>{' '}
+              <button className="btn" onClick={() => setEmailShown(false)} disabled={!emailShown}>Ulangi demo</button>
             </>
           )}
 
