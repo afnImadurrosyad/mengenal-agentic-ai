@@ -130,7 +130,7 @@ export default function App() {
               <p className="kicker">Materi Itera Career Day</p>
               <h1>Mengenal <span className="hl">Agentic AI</span> dan Agentic Workflow <span className="hand">untuk produktivitas kerja</span></h1>
               <p className="lead">LLM → AI Workflow → AI Agent → Agentic Workflow</p>
-              <p className="identity">Afnan Imadurrosyad — 124140125 — Informatika, Institut Teknologi Sumatera</p>
+              <p className="identity">Afnan Imadurrosyad — Informatika, Institut Teknologi Sumatera</p>
             </>
           )}
 
