@@ -324,10 +324,12 @@ export default function App() {
             <>
               <p className="kicker">Level 2 · Contoh nyata: Workflow Konten</p>
               <h2>Konten harian, <span className="hl">tanpa menulis dari nol.</span></h2>
+              {contentDetail === null && (
               <ul className="n8n-points hide-m">
                 <li>Contoh nyata ala Helena Liu — workflow konten harian.</li>
                 <li>Jalur sudah ditentukan manusia, bukan diputuskan agent.</li>
               </ul>
+              )}
               <div className="n8n-canvas">
                 <div className="n8n-top"><span>● workflow-konten</span><span className="n8n-active">● Active</span></div>
                 <div className="n8n-chain">
