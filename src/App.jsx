@@ -11,12 +11,12 @@ const SLIDES = [
 const loopNames = ['REASON', 'ACT', 'OBSERVE', 'ITERATE']
 const loopSubs = ['Pikirkan cara terbaik', 'Pakai tools', 'Amati hasilnya', 'Perbaiki / ulangi']
 const n8nNodes = [
-  { icon: '⏰', name: 'Schedule Trigger', sub: 'Setiap hari 08.00', step: 1, kind: 'trigger', detail: 'Pemicu: workflow berjalan otomatis setiap hari pukul 08.00.' },
-  { icon: '📊', name: 'Google Sheets', sub: 'Kumpulkan tautan', step: 2, detail: 'Membaca daftar tautan artikel berita dari Sheets.' },
-  { icon: '🔍', name: 'Perplexity', sub: 'Rangkum artikel', step: 3, detail: 'Meringkas setiap artikel menjadi poin-poin.' },
-  { icon: '✍️', name: 'Claude', sub: 'Draf prompt custom', step: 4, detail: 'Menulis draf postingan dengan prompt custom.' },
-  { icon: '💼', name: 'LinkedIn', sub: 'Draf postingan', step: 5, detail: 'Draf postingan LinkedIn siap diperiksa.' },
-  { icon: '📸', name: 'Instagram', sub: 'Draf postingan', step: 5, detail: 'Draf postingan Instagram siap diperiksa.' },
+  { icon: '⏰', name: 'Schedule Trigger', sub: 'Setiap hari 08.00', step: 1, kind: 'trigger', detail: 'Pemicu workflow ini.', settings: [['Pemicu', 'Setiap hari'], ['Jam', '08.00'], ['Mode', 'Otomatis (bukan manual)']] },
+  { icon: '📊', name: 'Google Sheets', sub: 'Kumpulkan tautan', step: 2, detail: 'Mengumpulkan bahan dari Sheets.', settings: [['Aksi', 'Baca baris'], ['Dokumen', 'Daftar tautan artikel berita']], sheet: [['AI agents are changing how teams work', 'example.com/artikel-1', 'Baru'], ['How LLMs reason step by step', 'example.com/artikel-2', 'Baru'], ['Agentic workflows, explained simply', 'example.com/artikel-3', 'Baru']] },
+  { icon: '🔍', name: 'Perplexity', sub: 'Rangkum artikel', step: 3, detail: 'Meringkas bahan sebelum ditulis.', settings: [['Aksi', 'Ringkas artikel'], ['Input', 'Tautan dari Google Sheets']], rules: ['Ringkas tiap artikel jadi 3 poin utama.', 'Fokus pada hal yang baru & relevan untuk audiens profesional.', 'Jangan tambah opini di luar isi artikel.'], output: 'Contoh output: “Artikel 1 — (1) Agent kini bisa memakai tools sendiri, (2) alurnya masih butuh pengawasan manusia, (3) dampak terbesar di tugas berulang.”' },
+  { icon: '✍️', name: 'Claude', sub: 'Draf prompt custom', step: 4, detail: 'Menulis draf dengan prompt yang diatur manusia.', settings: [['Model', 'Claude'], ['Input', 'Ringkasan dari Perplexity']], rules: ['Gaya: profesional tapi santai, bukan kaku.', 'Satu ide utama per postingan.', 'Akhiri dengan ajakan diskusi.', 'Panjang: 2–3 paragraf pendek.'], output: 'Contoh output (draf): “Agent AI bukan lagi sekadar chatbot — ia bisa menjalankan tugas lewat tools. Menurutmu, tugas apa yang paling layak didelegasikan duluan?”' },
+  { icon: '💼', name: 'LinkedIn', sub: 'Draf postingan', step: 5, detail: 'Hasil akhir untuk LinkedIn.', settings: [['Aksi', 'Buat draf postingan'], ['Input', 'Draf dari Claude'], ['Status', 'Draf — siap diperiksa, bukan langsung terbit']], output: 'Draf LinkedIn siap diperiksa (dari draf Claude di atas).' },
+  { icon: '📸', name: 'Instagram', sub: 'Draf postingan', step: 5, detail: 'Hasil akhir untuk Instagram.', settings: [['Aksi', 'Buat draf postingan'], ['Input', 'Draf dari Claude'], ['Status', 'Draf — siap diperiksa, bukan langsung terbit']], output: 'Draf Instagram siap diperiksa (dari draf Claude di atas).' },
 ]
 const reactVersions = [
   { t: 'Draf v1', d: 'Masih datar, belum terasa khas.' },
@@ -336,7 +336,7 @@ export default function App() {
                       const st = contentStep === n.step ? 'on' : contentStep > n.step ? 'done' : ''
                       return (
                         <span key={n.name} style={{ display: 'contents' }}>
-                          <button type="button" className={`n8n-node ${n.kind === 'trigger' ? 'trigger' : ''} ${st}`} onClick={() => setContentDetail(i)} aria-label={`${n.name}: ${n.sub}`}>
+                          <button type="button" className={`n8n-node ${n.kind === 'trigger' ? 'trigger' : ''} ${st} ${contentDetail === i ? 'selected' : ''}`} onClick={() => setContentDetail(i)} aria-label={`${n.name}: ${n.sub}`}>
                             <span className="n8n-icon">{n.icon}</span>
                             <span className="n8n-name">{n.name}</span>
                             <span className="n8n-sub">{n.sub}</span>
@@ -352,7 +352,7 @@ export default function App() {
                     {n8nNodes.slice(4).map((n, i) => {
                       const st = contentStep === 5 ? 'done' : ''
                       return (
-                        <button key={n.name} type="button" className={`n8n-node ${st}`} onClick={() => setContentDetail(4 + i)} aria-label={`${n.name}: ${n.sub}`}>
+                        <button key={n.name} type="button" className={`n8n-node ${st} ${contentDetail === 4 + i ? 'selected' : ''}`} onClick={() => setContentDetail(4 + i)} aria-label={`${n.name}: ${n.sub}`}>
                           <span className="n8n-icon">{n.icon}</span>
                           <span className="n8n-name">{n.name}</span>
                           <span className="n8n-sub">{n.sub}</span>
@@ -362,7 +362,21 @@ export default function App() {
                     })}
                   </div>
                 </div>
-                {contentDetail !== null && <p className="n8n-detail">{n8nNodes[contentDetail].detail}</p>}
+                {contentDetail !== null && (
+                  <div className="n8n-detail-card">
+                    <div className="n8n-detail-head"><span>{n8nNodes[contentDetail].icon} <strong>{n8nNodes[contentDetail].name}</strong> <span className="small">— {n8nNodes[contentDetail].detail}</span></span><button type="button" className="n8n-close" onClick={() => setContentDetail(null)} aria-label="Tutup detail">✕</button></div>
+                    {n8nNodes[contentDetail].settings.map(([k, v]) => (
+                      <div className="n8n-setting" key={k}><span>{k}</span><strong>{v}</strong></div>
+                    ))}
+                    {n8nNodes[contentDetail].rules && (
+                      <div className="n8n-rules"><strong>Aturan prompt:</strong>{n8nNodes[contentDetail].rules.map((r) => (<div key={r}>• {r}</div>))}</div>
+                    )}
+                    {n8nNodes[contentDetail].sheet && (
+                      <div className="n8n-sheet"><strong>Data sheet (dummy — contoh saja):</strong><table><thead><tr><th>Judul artikel</th><th>Tautan</th><th>Status</th></tr></thead><tbody>{n8nNodes[contentDetail].sheet.map((row) => (<tr key={row[1]}><td>{row[0]}</td><td>{row[1]}</td><td>{row[2]}</td></tr>))}</tbody></table></div>
+                    )}
+                    {n8nNodes[contentDetail].output && (<div className="n8n-output">{n8nNodes[contentDetail].output}</div>)}
+                  </div>
+                )}
               </div>
               <button className="btn" onClick={runContent} disabled={contentRunning || contentStep === 5}>Jalankan workflow →</button>{' '}
               <button className="btn" onClick={resetContent}>Ulangi demo</button>
