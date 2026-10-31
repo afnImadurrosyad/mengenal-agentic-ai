@@ -212,7 +212,7 @@ export default function App() {
                   <div className="llm-box">LLM</div><span className="diag-arrow">→</span><span className="diag-label">Output</span>
                 </div>
                 <p className="diag-text">Input: “Buatkan draf email untuk mengajak coffee chat.”</p>
-                <p className="diag-text">{emailShown ? 'Output: “Halo, bolehkah kita coffee chat minggu ini?” — sopan, singkat, siap dikirim setelah dibaca ulang.' : 'Output: — (tekan tombol untuk melihat hasilnya)'}</p>
+                {emailShown ? <img className="email-photo" src={`${import.meta.env.BASE_URL}coffee-chat-email.png`} alt="Screenshot draf email coffee chat" /> : <p className="diag-text">Output: — (tekan tombol untuk melihat hasilnya)</p>}
               </div>
               <button className="btn" onClick={() => setEmailShown(!emailShown)}>{emailShown ? 'Ulangi demo' : 'Ubah input jadi email →'}</button>
             </>
