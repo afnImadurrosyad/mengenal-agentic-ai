@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 const SLIDES = [
   'Judul', 'Video pembuka', 'Tren: komputasi', 'Tren: kemampuan', 'Tren: investasi', 'Apa Itu LLM?', 'Apa itu LLM', 'Diagram LLM', 'Batasan LLM',
   'Apa Itu AI Workflow?', 'Level 2 · AI Workflow', 'Diagram Workflow Kalender', 'Batasan Workflow', 'RAG',
-  'Contoh Workflow Konten', 'Apa Itu AI Agent?', 'Level 3 · AI Agent', 'Agent: Reason + Act', 'ReAct + Iterasi',
+  'Contoh Workflow Konten', 'Apa Itu AI Agent?', 'Level 3 · AI Agent', 'Agent: Reason + Act', 'Siklus Agent: Iterasi', 'ReAct + Iterasi',
   'Ringkasan 3 Level', 'Apa Itu Agentic Workflow?', 'Level 4 · Agentic Workflow', 'Demo Agentic Workflow',
   'Perbandingan', 'Panduan memilih', 'Risiko', 'Penutup',
 ]
@@ -42,10 +42,13 @@ export default function App() {
   const [turn, setTurn] = useState(1)
   const [loopEpoch, setLoopEpoch] = useState(0)
   const [agents, setAgents] = useState(0) // 0 idle, 1 running, 2 done
+  const [cycleStep, setCycleStep] = useState(0) // 0 idle, 1 pikir, 2 panggil, 3 hasil kembali, 4 nilai, 5 selesai
+  const [cycleRunning, setCycleRunning] = useState(false)
   const [sent, setSent] = useState(false)
   const [choice, setChoice] = useState(null)
   const calTimers = useRef([])
   const contentTimers = useRef([])
+  const cycleTimers = useRef([])
 
   const next = () => setIdx((v) => Math.min(SLIDES.length - 1, v + 1))
   const prev = () => setIdx((v) => Math.max(0, v - 1))
@@ -80,6 +83,7 @@ export default function App() {
   useEffect(() => () => {
     calTimers.current.forEach(clearTimeout)
     contentTimers.current.forEach(clearTimeout)
+    cycleTimers.current.forEach(clearTimeout)
   }, [])
 
   const runCalendar = () => {
@@ -111,6 +115,21 @@ export default function App() {
     setContentRunning(false)
     setContentDetail(null)
     setContentStep(0)
+  }
+  const runCycle = () => {
+    cycleTimers.current.forEach(clearTimeout)
+    setCycleRunning(true)
+    setCycleStep(1)
+    cycleTimers.current = [2, 3, 4, 5].map((n, i) => setTimeout(() => {
+      setCycleStep(n)
+      if (n === 5) setCycleRunning(false)
+    }, 900 * (i + 1)))
+  }
+  const resetCycle = () => {
+    cycleTimers.current.forEach(clearTimeout)
+    cycleTimers.current = []
+    setCycleRunning(false)
+    setCycleStep(0)
   }
   const resetReact = () => {
     setReactVer(0)
@@ -420,6 +439,30 @@ export default function App() {
 
           {idx === 18 && (
             <>
+              <p className="kicker">Level 3 · Siklus Agent</p>
+              <h2>AI tidak sekali jalan — <span className="hl">ia mengulang.</span></h2>
+              <div className="dark-diagram compact">
+                <div className="diag-row">
+                  <div className="llm-box">AI / LLM</div><span className="diag-arrow">→</span>
+                  <div className="cycle-tools"><strong>Tools</strong><span>Kalender · Sheets · Search</span></div>
+                </div>
+                <div className="cycle-return"><span className="down-arrow">↩</span><span className="search-label">Hasil tools kembali ke AI</span></div>
+                <div className="cycle-loop">↻ Ulangi: pikir → panggil tools → lihat hasil, sampai tujuan tercapai &nbsp;·&nbsp; ✓ Selesai → Output</div>
+                <div className="step-list">
+                  <div className={`step ${cycleStep === 1 ? 'on' : cycleStep > 1 ? 'done' : ''}`}><strong>1.</strong><span>AI berpikir: langkah berikutnya apa?</span></div>
+                  <div className={`step ${cycleStep === 2 ? 'on' : cycleStep > 2 ? 'done' : ''}`}><strong>2.</strong><span>AI memanggil tools yang dipilihnya.</span></div>
+                  <div className={`step ${cycleStep === 3 ? 'on' : cycleStep > 3 ? 'done' : ''}`}><strong>3.</strong><span>Hasil tools kembali ke AI — dibaca, bukan langsung dipakai mentah.</span></div>
+                  <div className={`step ${cycleStep === 4 || cycleStep === 5 ? 'on' : ''}`}><strong>4.</strong><span>AI menilai: ulangi lagi, atau selesai → Output.</span></div>
+                </div>
+              </div>
+              <button className="btn" onClick={runCycle} disabled={cycleRunning || cycleStep === 5}>Jalankan siklus →</button>{' '}
+              <button className="btn" onClick={resetCycle}>Ulangi demo</button>
+              <p className="status ok">{cycleStep === 5 ? 'Selesai — AI berhenti mengulang karena tujuan sudah tercapai.' : cycleStep > 0 ? 'Siklus sedang berjalan — perhatikan langkah yang menyala.' : 'Tekan Jalankan siklus — lihat hasil tools kembali ke AI, bukan langsung jadi jawaban.'}</p>
+            </>
+          )}
+
+          {idx === 19 && (
+            <>
               <p className="kicker">Level 3 · ReAct + Iterasi</p>
               <h2>ReAct = Reason + Act, <span className="hl">diulang mandiri.</span></h2>
               <div className="loop">
@@ -437,7 +480,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 19 && (
+          {idx === 20 && (
             <>
               <p className="kicker">Ringkasan · 3 Level</p>
               <h2>Tiga level, <span className="hl">satu garis besar.</span></h2>
@@ -449,14 +492,14 @@ export default function App() {
             </>
           )}
 
-          {idx === 20 && (
+          {idx === 21 && (
             <div className="q-slide">
               <p className="kicker">Topik berikutnya</p>
               <h2>Apa Itu Agentic Workflow?</h2>
             </div>
           )}
 
-          {idx === 21 && (
+          {idx === 22 && (
             <>
               <p className="kicker">Level 4 · Lanjutan dari video</p>
               <h2>Agentic Workflow: agent yang <span className="hl">diorkestrasi.</span></h2>
@@ -470,7 +513,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 22 && (
+          {idx === 23 && (
             <>
               <p className="kicker">Level 4 · Demo Agentic Workflow</p>
               <h2>Digest tugas, <span className="hl">dengan gerbang approve.</span></h2>
@@ -490,7 +533,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 23 && (
+          {idx === 24 && (
             <>
               <p className="kicker">Perbandingan</p>
               <h2>Siapa yang memutuskan <span className="hl">langkah berikutnya?</span></h2>
@@ -514,7 +557,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 24 && (
+          {idx === 25 && (
             <>
               <p className="kicker">Panduan memilih</p>
               <h2>Jangan asal pakai agent. <span className="hl">Tanya dulu tugasnya.</span></h2>
@@ -530,7 +573,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 25 && (
+          {idx === 26 && (
             <>
               <p className="kicker">Risiko &amp; tanggung jawab</p>
               <h2>Agent boleh cepat. <span className="hl">Verifikasi tetap milikmu.</span></h2>
@@ -542,7 +585,7 @@ export default function App() {
             </>
           )}
 
-          {idx === 26 && (
+          {idx === 27 && (
             <>
               <p className="kicker">Penutup</p>
               <h2>AI tidak menggantikan kerja. <span className="hl">AI mengubah peranmu.</span></h2>
