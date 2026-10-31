@@ -440,7 +440,7 @@ export default function App() {
               <h2>Agentic Workflow: agent yang <span className="hl">diorkestrasi.</span></h2>
               <p><span className="badge-ext">⚠️ Ini lanjutan kami, bukan bagian dari video Jeff Su</span></p>
               <ul className="points">
-                <li>Tujuan + pagar ditentukan manusia.</li>
+                <li>Tujuan + batasan ditentukan manusia.</li>
                 <li>Banyak agent dan tools diorkestrasi dalam satu alur.</li>
                 <li>Checkpoint manusia untuk aksi penting.</li>
                 <li>Fleksibel untuk tugas nyata, terkontrol untuk bisa dipercaya.</li>
@@ -479,7 +479,7 @@ export default function App() {
                     <tr><td><strong>LLM</strong></td><td>Manusia, tiap prompt</td><td>Tinggi</td><td>Rendah (nol aksi)</td><td>Menulis &amp; meringkas</td></tr>
                     <tr><td><strong>AI Workflow</strong></td><td>Manusia, saat desain</td><td>Sangat tinggi</td><td>Rendah</td><td>Tugas berulang &amp; terstruktur</td></tr>
                     <tr><td><strong>AI Agent</strong></td><td>LLM, saat jalan</td><td>Rendah</td><td>Sangat tinggi</td><td>Tugas yang jalurnya berubah-ubah</td></tr>
-                    <tr><td><strong>Agentic Workflow</strong></td><td>Manusia: tujuan + pagar; agent: langkah di dalamnya</td><td>Terkontrol</td><td>Tinggi, dalam pagar</td><td>Kerja panjang multi-tools yang butuh kontrol</td></tr>
+                    <tr><td><strong>Agentic Workflow</strong></td><td>Manusia: tujuan + batasan; agent: langkah di dalamnya</td><td>Terkontrol</td><td>Tinggi, dalam batasan</td><td>Kerja panjang multi-tools yang butuh kontrol</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -487,7 +487,7 @@ export default function App() {
                 <div className="card"><h3>LLM</h3><p>Manusia, tiap prompt · Bisa ditebak: tinggi · Fleksibel: rendah · Menulis &amp; meringkas</p></div>
                 <div className="card"><h3>AI Workflow</h3><p>Manusia, saat desain · Bisa ditebak: sangat tinggi · Fleksibel: rendah · Tugas berulang &amp; terstruktur</p></div>
                 <div className="card"><h3>AI Agent</h3><p>LLM, saat jalan · Bisa ditebak: rendah · Fleksibel: sangat tinggi · Tugas yang jalurnya berubah-ubah</p></div>
-                <div className="card"><h3>Agentic Workflow</h3><p>Manusia: tujuan + pagar; agent: langkah di dalamnya · Bisa ditebak: terkontrol · Fleksibel: tinggi, dalam pagar · Kerja panjang multi-tools yang butuh kontrol</p></div>
+                <div className="card"><h3>Agentic Workflow</h3><p>Manusia: tujuan + batasan; agent: langkah di dalamnya · Bisa ditebak: terkontrol · Fleksibel: tinggi, dalam batasan · Kerja panjang multi-tools yang butuh kontrol</p></div>
               </div>
             </>
           )}
