@@ -131,3 +131,45 @@ footer{border-top:2px solid var(--ink);margin-top:18px;padding-top:14px;color:va
   .counter{min-width:44px;font-size:14px}
   .keyhint{display:none}
 }
+/* n8n-style canvas for slide 9 (content workflow). Generic node shapes
+   built with CSS only — no n8n logo or brand assets are copied. */
+.n8n-points{margin:8px 0 0;padding-left:20px;font-size:14px;line-height:1.5}
+.n8n-points li{margin:3px 0}
+.n8n-canvas{background:#f4f4f2;background-image:radial-gradient(#c9c9c9 1px,transparent 1px);background-size:22px 22px;border:2px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 #d9d0a8;margin:12px 0;overflow:hidden}
+.n8n-top{display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:2px solid var(--ink);padding:8px 14px;font-weight:800;font-size:13px}
+.n8n-active{color:var(--green);font-size:12px}
+.n8n-chain{display:flex;align-items:center;gap:8px;padding:14px;flex-wrap:wrap}
+.n8n-main{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1}
+.n8n-branch{display:flex;flex-direction:column;gap:8px}
+.n8n-node{flex:1;min-width:118px;max-width:170px;background:#fff;border:2px solid #d4d4d4;border-radius:12px;padding:10px 12px;text-align:left;box-shadow:2px 2px 0 rgba(0,0,0,.12);transition:.3s;display:flex;flex-direction:column;gap:2px}
+.n8n-node.trigger{border-color:var(--ink);background:#fffbe6}
+.n8n-node.on{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-2px)}
+.n8n-node.done{border-color:var(--green);background:#dcfce7}
+.n8n-icon{font-size:18px}
+.n8n-name{font-weight:800;font-size:13px;line-height:1.2}
+.n8n-sub{font-size:11px;color:var(--muted)}
+.n8n-status{font-size:11px;font-weight:800}
+.n8n-status.done{color:var(--green)}
+.n8n-status.on{color:var(--blue)}
+.n8n-arrow{font-size:20px;font-weight:800;color:#9ca3af;flex:none}
+.n8n-detail{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:8px 12px;margin:0 14px 4px;font-size:13px;font-weight:700}
+@media(max-width:720px){
+  .n8n-canvas{margin:8px 0}
+  .n8n-chain{flex-direction:column;align-items:stretch;gap:4px;padding:8px}
+  .n8n-main{flex-direction:column;gap:4px}
+  .n8n-branch{flex-direction:row;gap:6px}
+  .n8n-node{max-width:none;flex-direction:row;align-items:center;gap:8px;padding:6px 10px}
+  .n8n-node > *{min-width:0}
+  .n8n-node .n8n-icon{font-size:15px;flex-shrink:0}
+  .n8n-node .n8n-name{font-size:12px;flex-shrink:0}
+  .n8n-node .n8n-sub{font-size:11px;flex:1 1 auto;word-break:break-word}
+  .n8n-branch .n8n-node{flex-direction:column;align-items:flex-start;gap:1px;padding:8px 10px}
+  .n8n-branch .n8n-node .n8n-sub{flex:none}
+  .n8n-branch .n8n-node .n8n-status{margin-left:0}
+  .n8n-node .n8n-status{margin-left:auto;white-space:nowrap;font-size:10px}
+  .n8n-arrow{transform:rotate(90deg);align-self:center;font-size:14px;line-height:1;margin:-2px 0}
+  .n8n-points{font-size:13px}
+}
+.q-slide{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:52vh;gap:6px}
+.q-slide h2{font-size:clamp(36px,7vw,72px);line-height:1.05;margin:10px 0}
+.identity{margin-top:26px;font-weight:700;font-size:clamp(14px,1.6vw,17px);color:#3f3a2e}
