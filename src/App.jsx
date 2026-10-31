@@ -149,41 +149,28 @@ export default function App() {
 
           {idx === 1 && (
             <>
-              <p className="kicker">Tren AI · Dari dulu sampai sekarang</p>
-              <h2>AI tidak tiba-tiba jadi agen.</h2>
-              <div className="step-list">
-                <div className="step"><strong>AI klasik</strong><span>Aturan & model untuk satu tugas; manusia yang menjalankan.</span></div>
-                <div className="step"><strong>Era LLM</strong><span>Model bahasa besar: menulis & menjawab, tapi masih pasif menunggu perintah.</span></div>
-                <div className="step"><strong>Era Workflow</strong><span>LLM dihubungkan ke data & tools lewat jalur yang ditentukan manusia.</span></div>
-                <div className="step"><strong>Era Agent</strong><span>LLM memutuskan sendiri cara mencapai tujuan, memakai tools, mengulang sampai beres.</span></div>
-                <div className="step on"><strong>Era Agentic</strong><span>Banyak agent bekerja bersama; manusia di checkpoint persetujuan.</span></div>
-              </div>
+              <p className="kicker">Tren AI · 8 dekade</p>
+              <h2>Komputasi pelatihan AI terus melesat.</h2>
+              <img className="trend-img" src={`${import.meta.env.BASE_URL}trend-compute.webp`} alt="Grafik Our World in Data: komputasi pelatihan sistem AI selama 8 dekade" />
+              <p className="small">Sumber: Our World in Data, “The brief history of AI” — data Sevilla et al. (CC BY).</p>
             </>
           )}
 
           {idx === 2 && (
             <>
-              <p className="kicker">Tren AI · Kenapa sekarang?</p>
-              <h2>Tiga hal yang berubah bersamaan.</h2>
-              <ul className="points">
-                <li>Model makin mampu bernalar & memakai tools, bukan cuma menebak kata berikutnya.</li>
-                <li>Aplikasi & data makin mudah dihubungkan lewat API.</li>
-                <li>Pekerjaan butuh eksekusi, bukan cuma jawaban — chatbot saja tidak cukup.</li>
-              </ul>
+              <p className="kicker">Tren AI · Kemampuan vs manusia</p>
+              <h2>AI menyusul manusia di berbagai tes.</h2>
+              <img className="trend-img" src={`${import.meta.env.BASE_URL}trend-capabilities.png`} alt="Grafik Our World in Data: skor tes kemampuan AI relatif terhadap performa manusia" />
+              <p className="small">Sumber: Our World in Data, “The brief history of AI” (CC BY).</p>
             </>
           )}
 
           {idx === 3 && (
             <>
-              <p className="kicker">Tren AI · Yang berubah: peran manusia</p>
-              <h2>Dari mengerjakan, ke mengarahkan.</h2>
-              <ul className="points">
-                <li>Dulu: manusia mengerjakan semua langkah.</li>
-                <li>Lalu: AI menjawab saat ditanya.</li>
-                <li>Lalu: AI menjalankan jalur yang kita tentukan.</li>
-                <li>Sekarang: AI mengerjakan tugas, manusia memeriksa & menyetujui.</li>
-                <li>Peta belajar kita: LLM → AI Workflow → AI Agent → Agentic Workflow.</li>
-              </ul>
+              <p className="kicker">Tren AI · Investasi korporat</p>
+              <h2>Investasi AI melonjak sejak 2018.</h2>
+              <img className="trend-img" src={`${import.meta.env.BASE_URL}trend-investment.png`} alt="Grafik Our World in Data: investasi korporat di AI menurut jenisnya" />
+              <p className="small">Sumber: Our World in Data, Max Roser (2023), “AI investments” (CC BY).</p>
             </>
           )}
 
